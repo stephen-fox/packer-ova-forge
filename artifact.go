@@ -22,7 +22,7 @@ func (o *forgeArtifacts) Id() string {
 }
 
 func (o *forgeArtifacts) String() string {
-	return strings.Join(o.filePaths, ", ")
+	return "OVA related files: " + strings.Join(o.filePaths, ", ")
 }
 
 func (o *forgeArtifacts) State(name string) interface{} {
