@@ -73,7 +73,7 @@ func (o *Configuration) Validate() error {
 }
 
 func vmwareifyOvf(filePath string, ui packer.Ui) (string, error) {
-	ui.Message("VMWareifying " + filePath + "...")
+	ui.Message("VMWareifying '" + filePath + "'...")
 
 	inputFilename := path.Base(filePath)
 	outputFilePath := path.Join(path.Dir(filePath), pathWithoutExtension(inputFilename) + "-vmware.ovf")
@@ -83,7 +83,7 @@ func vmwareifyOvf(filePath string, ui packer.Ui) (string, error) {
 		return "", err
 	}
 
-	ui.Message("VMWareified .ovf to '" + outputFilePath + "'")
+	ui.Message("Finished VMWareifying .ovf at '" + outputFilePath + "'")
 
 	return outputFilePath, nil
 }
@@ -105,7 +105,7 @@ func createOva(ovfFilePath string, files []string, ui packer.Ui) (string, error)
 		return "", err
 	}
 
-	ui.Message("Created .ova at '" + outputPath + "'")
+	ui.Message("Finished creating .ova at '" + outputPath + "'")
 
 	return outputPath, nil
 }
