@@ -12,7 +12,8 @@ import (
 )
 
 type PostProcessor struct {
-	config Configuration
+	Version string
+	config  Configuration
 }
 
 func (o *PostProcessor) Configure(i ...interface{}) error {
