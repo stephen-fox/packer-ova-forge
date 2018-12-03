@@ -1,0 +1,72 @@
+apply plugin: 'base'
+
+version = externalVersion
+
+File sourcesDir = file(projectDir.absolutePath + '/cmd/' + project.name)
+List<String> ldFlags = ['-X main.version=' + version.toString(), '-s', '-w']
+
+task buildPluginAll(type: Task) {
+    description 'Builds the plugin for all configurations.'
+    group 'build'
+    dependsOn 'buildPluginMacos', 'buildPluginWindows', 'buildPluginLinux'
+}
+
+task buildPluginMacos(type: Task) {
+    description 'Builds the plugin for macOS.'
+    group 'build'
+    doLast {
+        goBuild(sourcesDir, buildDir, project.name, 'darwin', 'amd64', ldFlags)
+    }
+}
+
+task buildPluginLinux(type: Task) {
+    description 'Builds the plugin for Linux.'
+    group 'build'
+    doLast {
+        goBuild(sourcesDir, buildDir, project.name, 'linux', 'amd64', ldFlags)
+    }
+}
+
+task buildPluginWindows(type: Task) {
+    description 'Builds the plugin for Windows.'
+    group 'build'
+    doLast {
+        goBuild(sourcesDir, buildDir, project.name, 'windows', 'amd64', ldFlags)
+    }
+}
+
+void goBuild(File sourceCodeDir, File outputDir, String binaryName, String os, String arch, List<String> ldFlags) throws GradleException {
+    List<String> command = ['go', 'build']
+
+    if (!arch?.trim()) {
+        throw new GradleException('Please specify the target arch')
+    }
+
+    if (!os?.trim()) {
+        throw new GradleException('Please specify the target operating system')
+    }
+
+    if (!ldFlags?.isEmpty()) {
+        command.add('-ldflags')
+        command.add(ldFlags.join(' '))
+    }
+
+    String outputPath = outputDir.absolutePath + File.separator + binaryName + '-' + os + '-' + arch
+    if (os == 'windows') {
+        outputPath = outputPath + '.exe'
+    }
+    command.add('-o')
+    command.add(outputPath)
+
+    logger.quiet('Compiling ' + sourceCodeDir.absolutePath + ' for ' + os + ', ' + arch + '...')
+
+    ExecResult result = exec {
+        environment GOARCH: arch, GOOS: os
+        workingDir sourceCodeDir.absolutePath
+        commandLine command
+    }
+
+    if (result.exitValue > 0) {
+        throw new GradleException('Failed to compile application for ' + os + ', ' + arch)
+    }
+}
