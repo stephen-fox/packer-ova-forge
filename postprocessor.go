@@ -100,7 +100,7 @@ func createOva(ovfFilePath string, files []string, ui packer.Ui) (string, error)
 		OutputFilePath:     outputPath,
 	}
 
-	err := ovaify.ConvertOvfToOva(config)
+	err := ovaify.CreateOvaFile(config)
 	if err != nil {
 		return "", err
 	}
