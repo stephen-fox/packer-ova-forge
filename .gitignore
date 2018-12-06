@@ -1,3 +1,7 @@
 # JetBrains.
 .idea/
 *.iml
+
+# Gradle.
+.gradle/
+build/

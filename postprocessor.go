@@ -12,7 +12,8 @@ import (
 )
 
 type PostProcessor struct {
-	config Configuration
+	Version string
+	config  Configuration
 }
 
 func (o *PostProcessor) Configure(i ...interface{}) error {
@@ -100,7 +101,7 @@ func createOva(ovfFilePath string, files []string, ui packer.Ui) (string, error)
 		OutputFilePath:     outputPath,
 	}
 
-	err := ovaify.ConvertOvfToOva(config)
+	err := ovaify.CreateOvaFile(config)
 	if err != nil {
 		return "", err
 	}
