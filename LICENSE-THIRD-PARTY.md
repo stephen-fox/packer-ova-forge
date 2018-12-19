@@ -1,4 +1,4 @@
-License for github.com/hashicorp/packer:
+# github.com/hashicorp/packer
 
 Mozilla Public License Version 2.0
 ==================================
