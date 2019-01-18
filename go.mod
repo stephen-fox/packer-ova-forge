@@ -62,7 +62,7 @@ require (
 	github.com/prometheus/procfs v0.0.0-20181204211112-1dc9a6cbc91a // indirect
 	github.com/sean-/seed v0.0.0-20170313163322-e2103e2c3529 // indirect
 	github.com/stephen-fox/ovaify v0.0.1
-	github.com/stephen-fox/vmwareify v0.0.1
+	github.com/stephen-fox/vmwareify v0.1.0
 	github.com/tv42/httpunix v0.0.0-20150427012821-b75d8614f926 // indirect
 	google.golang.org/grpc v1.17.0 // indirect
 	gopkg.in/airbrake/gobrake.v2 v2.0.9 // indirect

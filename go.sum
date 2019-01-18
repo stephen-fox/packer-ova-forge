@@ -283,6 +283,8 @@ github.com/stephen-fox/ovaify v0.0.1 h1:G+RsH67sd1ncA1pCM9Xr4c4XDnKYnCTUAQnILNLZ
 github.com/stephen-fox/ovaify v0.0.1/go.mod h1:APHZkrkZp888pSu8dBmxhB0YEs24UJgU/cpBZZNr3uo=
 github.com/stephen-fox/vmwareify v0.0.1 h1:6121AeDRLtzAeLovgdBxm89nLc3l1jagrxsSyD2Z3DQ=
 github.com/stephen-fox/vmwareify v0.0.1/go.mod h1:nyKQxTLduJv522s7Ay6OsOlrs1RRy+fb8DIqhXW8zW4=
+github.com/stephen-fox/vmwareify v0.1.0 h1:oImmJxsd8zolA/s1KMqByVcMEHnpcdayV8NbC9P/yes=
+github.com/stephen-fox/vmwareify v0.1.0/go.mod h1:nyKQxTLduJv522s7Ay6OsOlrs1RRy+fb8DIqhXW8zW4=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
 github.com/stretchr/testify v1.2.1 h1:52QO5WkIUcHGIR7EnGagH88x1bUzqGXTC5/1bDTUQ7U=
 github.com/stretchr/testify v1.2.1/go.mod h1:a8OnRcib4nhh0OaRAV+Yts87kKdq0PP7pXfy6kDkUVs=
