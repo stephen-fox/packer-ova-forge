@@ -1,6 +1,4 @@
 # ova-forge packer post-processor plugin
-
-## What is it?
 A [plugin for packer](https://packer.io/docs/post-processors/index.html)
 that allows users to convert VirtualBox ISO builds into OVAs for both
 VirtualBox and VMWare - without rebuilding the virtual machine!
