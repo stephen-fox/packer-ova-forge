@@ -55,4 +55,16 @@ As of Packer version 1.3.2, you need to do the following:
 `.packer.d/plugins/`
 3. Move the plugin into the directory and make sure it is named
 `packer-post-processor-ova-forge`
-4. Make sure it is set as executable (on *nix systems)
+4. Make sure it is set as executable (on \*nix systems)
+
+## Building from source
+You can use any of the following methods to build the plugin:
+
+- `go build cmd/packer-post-processor-ova-forge/main.go` - Build the plugin
+directly with the go CLI
+- `build.sh` - A simple wrapper around 'go build' that saves build artifacts
+to `build/` and sets a version number in the compiled binary. This script
+expects a version to be provided by setting an environment variable
+named `VERSION`
+- `buildall.sh` - Build the plugin for all supported OSes by wrapping the
+`build.sh` script
