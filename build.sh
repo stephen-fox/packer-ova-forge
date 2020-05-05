@@ -25,4 +25,4 @@ then
     filename="${filename}.exe"
 fi
 
-go build -ldflags "-X main.version=${VERSION}" -o "${buildDir}/${filename}" cmd/packer-*/main.go
+go build -ldflags "-X main.version=${VERSION}" -o "${buildDir}/${filename}" cmd/packer-post-processor-ova-forge/main.go
