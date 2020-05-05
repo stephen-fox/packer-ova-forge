@@ -17,9 +17,12 @@ func main() {
 		log.Fatal(err.Error())
 	}
 
-	server.RegisterPostProcessor(&ovaforge.PostProcessor{
+	err = server.RegisterPostProcessor(&ovaforge.PostProcessor{
 		Version: version,
 	})
+	if err != nil {
+		log.Fatal(err.Error())
+	}
 
 	server.Serve()
 }

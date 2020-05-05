@@ -1,10 +1,12 @@
 package ovaforge
 
 import (
+	"context"
 	"errors"
 	"path"
 	"strings"
 
+	"github.com/hashicorp/hcl/v2/hcldec"
 	"github.com/hashicorp/packer/packer"
 	"github.com/mitchellh/mapstructure"
 	"github.com/stephen-fox/ovaify"
@@ -29,7 +31,11 @@ func (o *PostProcessor) Configure(i ...interface{}) error {
 	return nil
 }
 
-func (o *PostProcessor) PostProcess(ui packer.Ui, artifact packer.Artifact) (packer.Artifact, bool, error) {
+func (o *PostProcessor) ConfigSpec() hcldec.ObjectSpec {
+	return nil
+}
+
+func (o *PostProcessor) PostProcess(_ context.Context, ui packer.Ui, artifact packer.Artifact) (packer.Artifact, bool, bool, error) {
 	result := &forgeArtifacts{}
 	var common []string
 	var ovfFilePaths []string
@@ -38,7 +44,7 @@ func (o *PostProcessor) PostProcess(ui packer.Ui, artifact packer.Artifact) (pac
 		if strings.HasSuffix(filePath, ".ovf") {
 			outputOvfFilePath, err := vmwareifyOvf(filePath, ui)
 			if err != nil {
-				return &forgeArtifacts{}, false, err
+				return &forgeArtifacts{}, false, false, err
 			}
 
 			ovfFilePaths = append(ovfFilePaths, filePath)
@@ -50,19 +56,19 @@ func (o *PostProcessor) PostProcess(ui packer.Ui, artifact packer.Artifact) (pac
 	}
 
 	if len(ovfFilePaths) == 0 {
-		return &forgeArtifacts{}, false, errors.New("No .ovf artifacts were provided")
+		return &forgeArtifacts{}, false, false, errors.New("No .ovf artifacts were provided")
 	}
 
 	for _, ovfFilePath := range ovfFilePaths {
 		ovaFilePath, err := createOva(ovfFilePath, common, ui)
 		if err != nil {
-			return &forgeArtifacts{}, false, err
+			return &forgeArtifacts{}, false, false, err
 		}
 
 		result.filePaths = append(result.filePaths, ovaFilePath)
 	}
 
-	return result, true, nil
+	return result, true, false, nil
 }
 
 type Configuration struct {
